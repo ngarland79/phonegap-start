@@ -21,9 +21,15 @@ var app = {
     initialize: function() {
         this.bindEvents();
         var self = this;
+        this.homeTpl = Handlebars.compile($("#home-tpl").html());
+        // this.employeeLiTpl = Handlebars.compile($("#employee-li-tpl").html());
+        this.renderHomeView();
         // this.store = new MemoryStore(function() {
         self.showAlert('Store Initialized', 'Info');
         // });
+    },
+    renderHomeView: function() {
+        $('body').html(this.homeTpl());
     },
     // Bind Event Listeners
     //
