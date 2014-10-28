@@ -1,34 +1,24 @@
-var LocalStorageStore = function(successCallback, errorCallback) {
-
-    this.displayAll = function() {
-        var items = JSON.parse(window.localStorage.getItem("items"));
-        var results = items.filter(function(element) {
-            var name = element.name;
-            return name;
-        });
-        callLater(callback, results);
-    }
+var MemoryStore = function(successCallback, errorCallback) {
 
     this.findByName = function(searchKey, callback) {
-        var items = JSON.parse(window.localStorage.getItem("items"));
-        var results = items.filter(function(element) {
-            var name = element.name;
-            return name.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
+        var employees = this.employees.filter(function(element) {
+            var fullName = element.firstName + " " + element.lastName;
+            return fullName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
         });
-        callLater(callback, results);
+        callLater(callback, employees);
     }
 
     this.findById = function(id, callback) {
-        var items = JSON.parse(window.localStorage.getItem("items"));
-        var item = null;
-        var l = items.length;
+        var employees = this.employees;
+        var employee = null;
+        var l = employees.length;
         for (var i=0; i < l; i++) {
-            if (items[i].id === id) {
-                item = items[i];
+            if (employees[i].id === id) {
+                employee = employees[i];
                 break;
             }
         }
-        callLater(callback, item);
+        callLater(callback, employee);
     }
 
     // Used to simulate async calls. This is done to provide a consistent interface with stores (like WebSqlStore)
@@ -41,7 +31,7 @@ var LocalStorageStore = function(successCallback, errorCallback) {
         }
     }
 
-    var items = [
+    this.employees = [
             {"id": 1,
              "name": "Azhdarcho",
              "description": "Azhdarcho is a genus of pterodactyloid pterosaur from the late Cretaceous Period of the Bissekty Formation (middle Turonian stage, about 92 million years ago) of Uzbekistan. It is known from fragmentary remains including the distinctive, elongated neck vertebrae that characterizes members of the family Azhdarchidae, which also includes such giant pterosaurs as Quetzalcoatlus. The name Azhdarcho comes from the Persian word azhdarha, the name of a dragon in Persian mythology. The type species is Azhdarcho lancicollis. The specific epithet lancicollis is derived from the Latin words lancea (meaning 'lance' or 'spear') and collum 'neck').",
@@ -51,8 +41,6 @@ var LocalStorageStore = function(successCallback, errorCallback) {
              "image1":"azhdarchos.png",
              "image2":""}
         ];
-
-    window.localStorage.setItem("items", JSON.stringify(items));
 
     callLater(successCallback);
 
