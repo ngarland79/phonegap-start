@@ -22,11 +22,32 @@ var app = {
         this.bindEvents();
         var self = this;
         this.homeTpl = Handlebars.compile($("#home-tpl").html());
-        // this.employeeLiTpl = Handlebars.compile($("#employee-li-tpl").html());
+        //this.employeeLiTpl = Handlebars.compile($("#employee-li-tpl").html());
         this.renderHomeView();
-        // this.store = new MemoryStore(function() {
         self.showAlert('Store Initialized', 'Info');
-        // });
+        this.store = new LocalStorageStore(function() {
+            self.route();
+        });
+        
+    },
+    route: function() {
+        var self = this;
+        var hash = window.location.hash;
+        if (!hash) {
+            if (this.homePage) {
+                this.slidePage(this.homePage);
+            } else {
+                this.homePage = new HomeView(this.store).render();
+                this.slidePage(this.homePage);
+            }
+            return;
+        }
+        var match = hash.match(this.detailsURL);
+        if (match) {
+            this.store.findById(Number(match[1]), function(item) {
+                self.slidePage(new ItemView(item).render());
+            });
+        }
     },
     renderHomeView: function() {
         $('body').html(this.homeTpl());
