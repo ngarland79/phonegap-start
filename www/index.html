@@ -14,8 +14,16 @@
     <body>
     <script id="home-tpl" type="text/x-handlebars-template">
         <div class='header'><h1>Pterosaur</h1></div>
+        <ul>
         {{#pterosaurs}}
-        {{name}}<br/>{{image1}}
+            <li>
+                {{name}}<br/>
+                {{description}}<br/>
+                {{geography}}<br/>
+                {{geology}}<br/>
+                {{family}}<br/>
+                <img src="img/pterosaurs/{{image1}}"/>
+            </li>
         {{/pterosaurs}}
     </script>
     <!--<script id="employee-li-tpl" type="text/x-handlebars-template">
