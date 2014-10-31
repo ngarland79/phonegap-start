@@ -7,30 +7,33 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/list-view.css" />
         <title>Hello World</title>
         <script type="text/javascript" src="js/lib/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/lib/handlebars-v2.0.0.js"></script>
     </head>
     <body>
-    <script id="home-tpl" type="text/x-handlebars-template">
-        <div class='header'><h1>Pterosaur</h1></div>
-        <ul>
-        {{#pterosaurs}}
-            <li>
-                {{name}}<br/>
-                {{description}}<br/>
-                {{geography}}<br/>
-                {{geology}}<br/>
-                {{family}}<br/>
-                <img src="img/pterosaurs/{{image1}}"/>
-            </li>
-        {{/pterosaurs}}
-    </script>
-    <!--<script id="employee-li-tpl" type="text/x-handlebars-template">
-        {{#.}}
-        <li><a href="#employees/{{this.id}}">{{this.firstName}} {{this.lastName}}<br/>{{this.title}}</a></li>
-        {{/.}}
-    </script>-->
+
+        <script id="home-tpl" type="text/x-handlebars-template">
+            <div class="list-view">
+                <div class='header'><h1>Pterosaur</h1></div>
+                <ul>
+                {{#pterosaurs}}
+                    <li>
+                        <div class="thumbnail" style="background: url(img/pterosaurs/{{image1}}) no-repeat"></div>
+                        {{name}}<br/>
+                        {{description}}<br/>
+                        {{geography}}<br/>
+                        {{geology}}<br/>
+                        {{family}}<br/>
+                        
+                    </li>
+                {{/pterosaurs}}
+            </div>
+        </script>
+
+    
+
         <div class="app">
             <h1>PhoneGap</h1>
             <div id="deviceready" class="blink">

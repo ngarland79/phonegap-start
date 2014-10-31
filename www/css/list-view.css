@@ -1,0 +1,13 @@
+ul {
+	list-style-type: none;
+}
+li {
+	height: 20%;
+}
+.thumbnail {
+	height: 150px;
+	width: 200px;
+	width: 20%;
+	background-size: 100% !important;
+	float: left;
+}
