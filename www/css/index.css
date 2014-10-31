@@ -25,6 +25,11 @@
     src: url(../fonts/BebasNeueRegular.otf);
 }
 @font-face {
+    font-family: BebasNeueBold;
+    src: url(../fonts/BebasNeueBold.otf);
+    font-weight: bold;
+}
+@font-face {
     font-family: OpenSans;
     src: url(../fonts/OpenSans-Regular.woff);
 }
